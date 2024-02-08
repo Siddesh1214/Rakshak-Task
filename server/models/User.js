@@ -32,7 +32,20 @@ const userSchema = new mongoose.Schema(
     },
     token: {
       type: String,
-    },
+		},
+		attempted: {
+			type: Boolean,
+			default: false,
+		},
+		marks: {
+			type: Number,
+			default:0,
+		},
+		liscenceNo: {
+			type: String,
+			// required: true,
+
+		}
 	},
 	{ timestamps: true }
 );

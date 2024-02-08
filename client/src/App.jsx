@@ -10,9 +10,11 @@ import OpenRoute from "./components/OpenRoute";
 import PrivateRoute from "./components/PrivateRoute";
 import { useSelector } from "react-redux";
 import Quiz from "./pages/Quiz";
+import Liscence from "./pages/Liscence";
 
 function App() {
 	const { isAuthenticated } = useSelector((state) => state.profile);
+	// const { isAuthenticated } = useSelector((state) => state.profile);
 	// const { isAuthenticated } = useSelector((state) => state.profile);
 	console.log("VALUE OF isAuthenticated---- ", isAuthenticated);
 	// const isAuthenticated=localSt/
@@ -59,6 +61,7 @@ function App() {
 				<Route path="/profile" element={isAuthenticated?<Profile/>:<Login/>}></Route>
 				<Route path="/editprofile" element={isAuthenticated?<EditProfile/>:<Login/>}></Route>
 				<Route path="/quiz" element={isAuthenticated?<Quiz/>:<Login/>}></Route>
+				<Route path="/liscence" element={isAuthenticated?<Liscence/>:<Login/>}></Route>
 
 
 

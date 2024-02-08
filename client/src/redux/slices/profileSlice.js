@@ -12,6 +12,8 @@ const initialState = {
 	isAuthenticated: localStorage.getItem("isAuthenticated")
 		? localStorage.getItem("isAuthenticated")
 		: false,
+	testAttempted: localStorage.getItem("testAttempted") ? localStorage.getItem("testAttempted") : false,
+	marks: localStorage.getItem("marks") ? localStorage.getItem("marks") : 0,
 };
 
 const profileSlice = createSlice({
@@ -30,9 +32,15 @@ const profileSlice = createSlice({
 		setIsAuthenticated(state, value) {
 			state.isAuthenticated = value.payload;
 		},
+		setTestAttempted(state, value) {
+			state.testAttempted = value.payload;
+		},
+		setMarks(state, value) {
+			state.marks = value.payload;
+		},
 	},
 });
 
-export const { setUser, setLoading, setToken, setIsAuthenticated } =
+export const { setUser, setLoading, setToken, setIsAuthenticated,setTestAttempted,setMarks } =
 	profileSlice.actions;
 export default profileSlice.reducer;

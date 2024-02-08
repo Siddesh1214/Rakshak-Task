@@ -34,7 +34,7 @@ function Navbar() {
         <div className='flex items-center'>
           <a href="/profile" className='mr-6 hover:text-gray-500 dark:hover:text-red-400 transition duration-300 ease-in-out'>Proflie</a>
           <a href="/quiz" className='mr-6 hover:text-gray-500 dark:hover:text-red-400 transition duration-300 ease-in-out'>Quiz</a>
-          <a href="/application" className='mr-6 hover:text-gray-500 dark:hover:text-red-400 transition duration-300 ease-in-out'>Application</a>
+          <a href="/liscence" className='mr-6 hover:text-gray-500 dark:hover:text-red-400 transition duration-300 ease-in-out'>Liscence</a>
           <a href="/editprofile" className='mr-6 hover:text-gray-500 dark:hover:text-red-400 transition duration-300 ease-in-out'>Edit Profile</a>
           <a href="/" className='mr-6 hover:text-gray-500 dark:hover:text-red-400 transition duration-300 ease-in-out'>Upload Docs</a>
           {isAuthenticated?(<a href="/" onClick={logoutUser} className='mr-6 hover:text-gray-500 dark:hover:text-red-400 transition duration-300 ease-in-out'>Log out</a>):(<div></div>)}

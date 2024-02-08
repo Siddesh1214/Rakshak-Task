@@ -4,9 +4,10 @@ import App from "./App.jsx";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { configureStore } from "@reduxjs/toolkit";
-import rootReducer from "./redux/index.js";
+// import rootReducer from "./redux/index.js";
 import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
+import rootReducer from "./redux/index.js";
 
 const store = configureStore({
 	reducer: rootReducer,
