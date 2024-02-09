@@ -9,7 +9,7 @@ import {
 	setMarks,
 	setUser,
 } from "../redux/slices/profileSlice";
-import{Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 function Quiz() {
 	const { token, user } = useSelector((state) => state.profile);
@@ -23,15 +23,16 @@ function Quiz() {
 	const [clickedOption, setClickedOption] = useState(0);
 	const [showResult, setShowResult] = useState(false);
 
+	// const BASE_URL = process.env.REACT_APP_BASE_URL;
+	const BASE_URL = " http://localhost:4000/api/v1";
+
+	const url = BASE_URL + "/quiz/allQuizData";
+	console.log(url);
 	useEffect(() => {
 		const getAll = async () => {
-			const res = await apiConnector(
-				"GET",
-				"http://localhost:4000/api/v1/quiz/allQuizData",
-				{
-					Authorization: `Bearer ${token}`,
-				}
-			);
+			const res = await apiConnector("GET", URL, {
+				Authorization: `Bearer ${token}`,
+			});
 
 			// console.log("All quiz questions---->>>>", res.data.data.QuizData);
 			// console.log("SAMPUN", quizData);
@@ -104,11 +105,16 @@ function Quiz() {
 						<br />
 					</span>
 					<span className=" text-2xl text-center text-green-500">
-						You will get liscence after uploading your Adhar Card and Pan Card in the
-						Upload Docs Tab
+						You will get liscence after uploading your Adhar Card and Pan Card
+						in the Upload Docs Tab
 						<br />
 					</span>
-					<Link to='/uploadDocs'> <span className="text-xl underline text-blue-400 hover:text-blue-800">Upload Docs</span></Link>
+					<Link to="/uploadDocs">
+						{" "}
+						<span className="text-xl underline text-blue-400 hover:text-blue-800">
+							Upload Docs
+						</span>
+					</Link>
 				</div>
 			) : (
 				<>
