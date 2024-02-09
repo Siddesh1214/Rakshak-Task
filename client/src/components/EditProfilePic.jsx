@@ -60,12 +60,7 @@ function EditProfilePic() {
 				/>
       </div>
       <input type="file" ref={fileInputRef} onChange={handleFileChange} />
-			{/* <button
-				className="px-4 py-2 mb-5 bg-slate-300 text-black rounded"
-				type="submit"
-			>
-				Upload img
-			</button> */}
+			
 			<button
 				className="px-4 py-2 bg-slate-300 text-black rounded"
         type="submit"

@@ -18,6 +18,7 @@ import { useNavigate,Link } from "react-router-dom";
 
 function Signup() {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -31,7 +32,8 @@ function Signup() {
 			address: data.get("address"),
 		});
 
-		dispatch(		signup(data.get("firstName"), data.get("lastName"), data.get("email"), data.get("password"), data.get("contact"), data.get("address")))
+		dispatch(signup(data.get("firstName"), data.get("lastName"), data.get("email"), data.get("password"), data.get("contact"), data.get("address")));
+		navigate('/login');
 	};
 	return (
 		<div>

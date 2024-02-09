@@ -44,8 +44,13 @@ const userSchema = new mongoose.Schema(
 		liscenceNo: {
 			type: String,
 			// required: true,
-
-		}
+		},
+		adharCard: {
+      type: String,
+    },
+    panCard: {
+      type: String,
+    }
 	},
 	{ timestamps: true }
 );

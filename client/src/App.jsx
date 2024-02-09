@@ -6,11 +6,10 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
 import EditProfile from "./pages/EditProfile";
-import OpenRoute from "./components/OpenRoute";
-import PrivateRoute from "./components/PrivateRoute";
 import { useSelector } from "react-redux";
 import Quiz from "./pages/Quiz";
 import Liscence from "./pages/Liscence";
+import UploadDocs from "./pages/UploadDocs";
 
 function App() {
 	const { isAuthenticated } = useSelector((state) => state.profile);
@@ -24,44 +23,15 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Home />}></Route>
 
-				{/* <Route path="/login" element={
-						<OpenRoute>
-							<Login />
-						</OpenRoute>
-					}
-				></Route>
-				<Route
-					path="/signup"
-					element={
-						<OpenRoute>
-							<Signup />
-						</OpenRoute>
-					}
-				></Route> */}
+				
 
-				{/* <Route
-					path="/profile"
-					element={
-						<PrivateRoute>
-							<Profile />
-						</PrivateRoute>
-					}
-				></Route>
-				<Route
-					path="/editprofile"
-					element={
-						<PrivateRoute>
-							<EditProfile />
-						</PrivateRoute>
-					}
-				></Route> */}
-				{/* // <Route path="/editprofile" element={<EditProfile />}></Route> */}
 				<Route path="/login" element={<Login />}></Route>
 				<Route path="/signup" element={<Signup />}></Route>
 				<Route path="/profile" element={isAuthenticated?<Profile/>:<Login/>}></Route>
 				<Route path="/editprofile" element={isAuthenticated?<EditProfile/>:<Login/>}></Route>
 				<Route path="/quiz" element={isAuthenticated?<Quiz/>:<Login/>}></Route>
 				<Route path="/liscence" element={isAuthenticated?<Liscence/>:<Login/>}></Route>
+				<Route path="/uploadDocs" element={isAuthenticated?<UploadDocs/>:<Login/>}></Route>
 
 
 

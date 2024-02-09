@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const crypto = require('crypto');
 require("dotenv").config();
 const { uploadImageToCloudinary } = require("../utils/imageUploader");
 
@@ -193,3 +194,173 @@ exports.updatePicture = async (req,res) => {
 		});
 	}
 };
+
+
+
+exports.uploadAdhar = async (req,res) => {
+	try {
+		const userId = req.user.id;
+		
+
+		const adharCard = req.files.adharCard;
+
+		if (!adharCard) {
+			return res.status(500).json({
+				success: false,
+				message: "No Image Found",
+			});
+		}
+		const uploadedImage = await uploadImageToCloudinary(
+			adharCard,
+			process.env.FOLDER_NAME,
+			1000,
+			1000
+		);
+		console.log("uploadedImage----", uploadedImage);
+
+		const updatedUser = await User.findByIdAndUpdate(
+			{ _id: userId },
+			{ adharCard: uploadedImage.secure_url },
+			{ new: true }
+		);
+
+		return res.status(200).json({
+			success: true,
+			message: "Adhar card added successfully",
+			data: updatedUser,
+		});
+	} catch (error) {
+		console.log(error);
+		return res.status(500).json({
+			success: false,
+			error: error.message,
+		});
+	}
+};
+exports.uploadPan = async (req,res) => {
+	try {
+		const userId = req.user.id;
+
+		const panCard = req.files.panCard;
+
+		if (!panCard) {
+			return res.status(500).json({
+				success: false,
+				message: "No Image Found",
+			});
+		}
+		const uploadedImage = await uploadImageToCloudinary(
+			panCard,
+			process.env.FOLDER_NAME,
+			1000,
+			1000
+		);
+		console.log("uploadedImage----", uploadedImage);
+
+		const updatedUser = await User.findByIdAndUpdate(
+			{ _id: userId },
+			{ panCard: uploadedImage.secure_url },
+			{ new: true }
+		);
+
+		return res.status(200).json({
+			success: true,
+			message: "Adhar card added successfully",
+			data: updatedUser,
+		});
+	} catch (error) {
+		console.log(error);
+		return res.status(500).json({
+			success: false,
+			error: error.message,
+		});
+	}
+};
+
+
+// exports.generateLiscenceNo = async (req, res) => {
+// 	try {
+// 		// const userId = req.user.id;
+// 		console.log("reg", req.user);
+// 		console.log("reg id", req.user.id);
+// 		const userId = req.user.id;
+// 		// const sec = req.body.user;
+// 		// console.log("first",sec)
+
+// 		// const userId = req.body.user._id;
+
+// 		// const userDet = await User.findById({ _id: userId });
+// 		// const userDet = await User.findOne({userId});
+
+// 		// console.log("USer", userDet);
+		
+// 		// if (!userDet) {
+// 		// 	res.status(400).json({
+// 		// 		success: false,
+// 		// 		message: "User not found",
+// 		// 	});
+
+// 		// }
+
+// 		const liscenceNoGenerated = crypto.randomBytes(10).toString('hex');
+// 		// console.log("liscenceNoGenerated")
+// 		console.log("liscenceNoGenerated--->>> ", liscenceNoGenerated);
+// 		const updatedUser = await User.findByIdAndDelete(
+// 			userId,
+// 			{ liscenceNo: liscenceNoGenerated },
+// 			{ new: true }
+// 		)
+
+// 		console.log("updatedUser ",updatedUser)
+// 		return res.status(200).json({
+// 			success: true,
+// 			message: 'Liscence Generarted Successfully',
+// 			data:updatedUser
+// 		})
+// 	} catch (error) {
+// 		console.log(error);
+// 		return res.status(500).json({
+// 			success: false,
+// 			error: error.message,
+// 		});
+// 	}
+// }
+
+exports.generateLiscenceNo = async (req, res) => {
+	try {
+		const userId = req.user.id;
+
+		const userDetails = await User.findOne({_id: userId});
+
+		if (!userDetails) {
+			res.status(400).json({
+				success: false,
+				message: "User not found",
+			});
+		}
+
+
+		const liscenceNoGenerated = crypto.randomBytes(10).toString('hex');
+		// console.log("liscenceNoGenerated")
+		console.log("liscenceNoGenerated--->>> ", liscenceNoGenerated);
+		const updatedUser = await User.findByIdAndDelete(
+			userId,
+			{ liscenceNo: liscenceNoGenerated },
+			{ new: true }
+		)
+
+		return res.status(200).json({
+			success: true,
+			message: "Liscence Generated Successfully",
+			data: updatedUser,
+		});
+
+	} catch (error) {
+		console.log(error);
+		return res.status(500).json({
+			success: false,
+			message: "Error in updating the profile",
+			error: error.message,
+		});
+	}
+}
