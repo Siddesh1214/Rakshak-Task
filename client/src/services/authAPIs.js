@@ -9,7 +9,8 @@ import {
 import { useDispatch } from "react-redux";
 
 // const BASE_URL = process.env.REACT_APP_BASE_URL;
-const BASE_URL = " http://localhost:4000/api/v1";
+// const BASE_URL = " http://localhost:4000/api/v1";
+const BASE_URL = " https://rakshak-task.onrender.com/api/v1";
 
 const LOGIN_API = BASE_URL + "/auth/login";
 const SIGNUP_API = BASE_URL + "/auth/signup";
