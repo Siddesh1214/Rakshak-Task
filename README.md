@@ -9,14 +9,23 @@ first user need to signup then login, user can edit his profile, change profile 
 
  
  **Step 2)** First go to server create a  .env file in server folder and create a variables 
+ 
       MONGO_URL=   *mongoDb url*
+      
       PORT=4000
+      
       JWT_SECRET=  *jwt secret*
+   
       REACT_URL=http://localhost:5173
+      
       logon to cloudinary (used to store images) generate all the keys 
+      
       CLOUD_NAME=  
+      
       API_KEY= 
+      
       API_SECRET= 
+      
       FOLDER_NAME=
 
 # Technology used
