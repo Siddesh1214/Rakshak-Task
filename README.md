@@ -5,19 +5,19 @@ first user need to signup then login, user can edit his profile, change profile 
 
  **How to SetUp**
  **Step 1)** First go to client create a .env file in client folder and create a variable named  VITE_BASE_URL=http://localhost:4000/api/v1
+
+
+ 
  **Step 2)** First go to server create a  .env file in server folder and create a variables 
-MONGO_URL=   *mongoDb url*
-PORT=4000
-JWT_SECRET=  *jwt secret*
-
-REACT_URL=http://localhost:5173
-
-logon to cloudinary (used to store images)
-generate all the keys 
-CLOUD_NAME=  
-API_KEY= 
-API_SECRET= 
-FOLDER_NAME=
+      MONGO_URL=   *mongoDb url*
+      PORT=4000
+      JWT_SECRET=  *jwt secret*
+      REACT_URL=http://localhost:5173
+      logon to cloudinary (used to store images) generate all the keys 
+      CLOUD_NAME=  
+      API_KEY= 
+      API_SECRET= 
+      FOLDER_NAME=
 
 # Technology used
 
