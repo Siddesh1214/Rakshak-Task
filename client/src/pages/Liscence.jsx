@@ -10,27 +10,13 @@ function Liscence() {
   const [show, setShow] = useState(false);
 
 
-  const generateLiscence = async () => {
 
-    
-    // try {
-    //   dispatch(generateLiscenceNo(token, user));
-    // } catch (error) {
-    //   console.log(error);
-    // }
-  }
+  
 
 
-  // try {
-			
-  //   dispatch(editProfileDetails(data, token));
-  // } catch (error) {
-  //   console.log("Erroror ", error);
-
-  // }
+  
   
   const liscNo = crypto.randomUUID(10).toUpperCase().split('-').join('');
-  // console.log("liscNo", liscNo)
   console.log("liscNo----", user)
   
 

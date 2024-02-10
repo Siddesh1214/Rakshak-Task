@@ -8,9 +8,10 @@ import {
 } from "../redux/slices/profileSlice";
 import { useDispatch } from "react-redux";
 
-// const BASE_URL = process.env.REACT_APP_BASE_URL;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 // const BASE_URL = " http://localhost:4000/api/v1";
-const BASE_URL = " https://rakshak-task.onrender.com/api/v1";
+
+// const BASE_URL = " https://rakshak-task.onrender.com/api/v1";
 
 const LOGIN_API = BASE_URL + "/auth/login";
 const SIGNUP_API = BASE_URL + "/auth/signup";
@@ -75,7 +76,6 @@ export const login = (email, password, navigate) => {
 
 			localStorage.setItem("token", JSON.stringify(res.data.token));
 			localStorage.setItem("user", JSON.stringify(res.data.user));
-			localStorage.setItem("isAuthenticated", true);
 
 			navigate("/profile");
 		} catch (error) {

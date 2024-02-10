@@ -24,20 +24,6 @@ function EditProfile() {
 	const submitEditForm = async(data) => {
 		console.log('Form Data... ', data);
 		console.log('TOKEN--- ', token);
-		// dispatch(setLoading(true));
-		// const toastId = toast.loading("Saving Changes..")
-
-		// try {
-		// 	const response = await editProfile(data, token);
-		// 	console.log("RES RECIVED IS ", response);
-		// 	await dispatch(setUser(response));
-		// 	toast.success("Changes Saved Successfully");
-		// } catch (error) {
-		// 	console.log(error);
-		// }
-
-		// dispatch(setLoading(true));
-		// toast.dismiss(toastId);
 
 		try {
 			

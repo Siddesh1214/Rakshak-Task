@@ -8,20 +8,7 @@ import { setUser } from "../redux/slices/profileSlice";
 
 function Profile() {
 
-	// const [displayUser, setDispalyUser] = useState(null);
 	
-	// useEffect(() => {
-		// const { user } = useSelector((state) => state.profile);
-	// 	setDispalyUser(user);
-	// }, []);
-	// setDispalyUser(user)
-	// console.log("RECIVED USER IS -", displayUser);
-	// console.log("RECIVED USER IS  DISPLAY-", displayUser);
-	// const [per, setPer] = useState(null);
-	// setPer(user);
-	
-
-	// 	console.log("RECIVED USER IS  DISPLAY-", per);
 
 	const { user } = useSelector((state) => state.profile);
 
