@@ -3,7 +3,7 @@ import { apiConnector } from "../services/apiConnector";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 // import { setAttemptedTrue } from "../../../server/controllers/Quiz";
-import { markTestGiven } from "../services/authAPIs";
+import { getQuiz, markTestGiven } from "../services/authAPIs";
 import {
 	setTestAttempted,
 	setMarks,
@@ -23,33 +23,20 @@ function Quiz() {
 	const [clickedOption, setClickedOption] = useState(0);
 	const [showResult, setShowResult] = useState(false);
 
-	const BASE_URL = import.meta.env.VITE_BASE_URL;
-	// const BASE_URL = " http://localhost:4000/api/v1";
-	// const BASE_URL = " http://localhost:4000/api/v1";
-	// const BASE_URL = " https://rakshak-task.onrender.com/api/v1";
-
-
-	const url = BASE_URL + "/quiz/allQuizData";
-	console.log(url);
 	useEffect(() => {
 		const getAll = async () => {
-			const res = await apiConnector("GET", URL, {
-				Authorization: `Bearer ${token}`,
-			});
+			// const response;
+			const ans = await getQuiz();
+			// console.log("ANS is", ans);
 
-			// console.log("All quiz questions---->>>>", res.data.data.QuizData);
-			// console.log("SAMPUN", quizData);
-			setQuizData(res.data.data.QuizData);
-			// console.log("SAMPUN", quizData);
-		};
+			setQuizData(ans);
+		}
 		getAll();
 	}, [token]);
 
 	useEffect(() => {
-		// console.log("Quiz Data Updated:", quizData);
 	}, [quizData]);
 
-	// console.log(quizData[0]?.options);
 
 	const changeQuestion = async () => {
 		updateScore();
@@ -59,21 +46,12 @@ function Quiz() {
 		} else {
 			setShowResult(true);
 
-			// const res= await apiConnector('POST',"http://localhost:4000/api/v1/quiz/setAttemptedTrue",
-			// {
-			//   Authorization: `Bearer ${token}`,
-			//   })
-
-			// console.log(res);
-			// toast.success('You completed the test');
+			
 
 			const res = await markTestGiven(token, user, score);
 			console.log("FROM QUIZ PAGE", res.data.sol);
-			// localStorage.setItem('user', JSON.stringify({...user, sol:res.data.sol}));
-			// dispatch(setUser(res.data.data));
-			// localStorage.setItem("user", JSON.stringify(res.data.data));
+			
 			await dispatch(setUser(res.data.sol));
-			// localStorage.setItem('user', res.data.sol);
 			localStorage.setItem("user", JSON.stringify(res.data.sol));
 
 			await dispatch(setTestAttempted(true));
@@ -160,7 +138,7 @@ function Quiz() {
 									type="button"
 									value="Next"
 									id="next-button"
-									className="mx-auto px-6 py-1 mt-5 text-xl bg-blue-300"
+									className="mx-auto px-6 py-1 mt-5 text-xl bg-blue-300 cursor-pointer"
 									onClick={changeQuestion}
 								/>
 							</div>

@@ -19,7 +19,7 @@ const EDITPROFILE = BASE_URL + "/auth/editProfile";
 const CHANGE_PROFILE_PIC = BASE_URL + "/auth/changeProfilePic";
 const UPLOAD_ADHAR_CARD = BASE_URL + "/auth/uploadAdhar";
 const UPLOAD_PAN_CARD = BASE_URL + "/auth/uploadPan";
-const GET_USER_DATA = BASE_URL + "/user";
+const GET_QUIZ_DATA = BASE_URL + "/quiz/allQuizData";
 const UPLOAD_DOCS = BASE_URL + "/auth/uploadDocs";
 const ABCD = BASE_URL + "/quiz/setAttemptedTrue";
 const LISCENCE_NO = BASE_URL + "/auth/liscenceNo";
@@ -161,14 +161,19 @@ export function updateDisplayPic(token, formData) {
 	};
 }
 
-export const markTestGiven = async (token,user,score) => {
+export const markTestGiven = async (token, user, score) => {
 	// const toastId = toast.loading("Loading.....");
 	// console.log("API FORMDATA ", formData);
 	// dispatch(setLoading(true));
 	try {
-		const res = await apiConnector("PUT", ABCD,{token,score} ,{
-			Authorization: `Bearer ${token}`,
-		});
+		const res = await apiConnector(
+			"PUT",
+			ABCD,
+			{ token, score },
+			{
+				Authorization: `Bearer ${token}`,
+			}
+		);
 		console.log("UPDATE_TEST_STATUS......", res);
 		// localStorage.setItem("testAttempted", true);
 		return res;
@@ -180,7 +185,6 @@ export const markTestGiven = async (token,user,score) => {
 	// toast.dismiss(toastId);
 };
 
-
 export function adharToServer(token, formData) {
 	return async (dispatch) => {
 		const toastId = toast.loading("Loading.....");
@@ -188,21 +192,13 @@ export function adharToServer(token, formData) {
 		dispatch(setLoading(true));
 
 		try {
-			const response = await apiConnector(
-				"POST",
-				UPLOAD_ADHAR_CARD,
-				formData,
-				{
-					"content-type": "multipart/form-data",
-					Authorization: `Bearer ${token}`,
-				}
-			);
+			const response = await apiConnector("POST", UPLOAD_ADHAR_CARD, formData, {
+				"content-type": "multipart/form-data",
+				Authorization: `Bearer ${token}`,
+			});
 
 			console.log("UPLOAD_ADHAR_API RESPONSE......", response);
-			console.log(
-				"UPLOAD_ADHAR_API PICTURE LINE......",
-				response.data.message
-			);
+			console.log("UPLOAD_ADHAR_API PICTURE LINE......", response.data.message);
 
 			localStorage.setItem("user", JSON.stringify(response?.data?.data));
 			dispatch(setUser(response?.data?.data));
@@ -214,7 +210,7 @@ export function adharToServer(token, formData) {
 		}
 		dispatch(setLoading(false));
 		toast.dismiss(toastId);
-	}
+	};
 }
 export function panToServer(token, formData) {
 	return async (dispatch) => {
@@ -223,21 +219,13 @@ export function panToServer(token, formData) {
 		dispatch(setLoading(true));
 
 		try {
-			const response = await apiConnector(
-				"POST",
-				UPLOAD_PAN_CARD,
-				formData,
-				{
-					"content-type": "multipart/form-data",
-					Authorization: `Bearer ${token}`,
-				}
-			);
+			const response = await apiConnector("POST", UPLOAD_PAN_CARD, formData, {
+				"content-type": "multipart/form-data",
+				Authorization: `Bearer ${token}`,
+			});
 
 			console.log("UPLOAD_PAN_API RESPONSE......", response);
-			console.log(
-				"UPLOAD_PAN_API PICTURE LINE......",
-				response.data.message
-			);
+			console.log("UPLOAD_PAN_API PICTURE LINE......", response.data.message);
 
 			localStorage.setItem("user", JSON.stringify(response?.data?.data));
 			dispatch(setUser(response?.data?.data));
@@ -249,22 +237,26 @@ export function panToServer(token, formData) {
 		}
 		dispatch(setLoading(false));
 		toast.dismiss(toastId);
-	}
+	};
 }
 
-
-export function generateLiscenceNo(token,user) {
+export function generateLiscenceNo(token, user) {
 	return async (dispatch) => {
 		const toastId = toast.loading("Loading.....");
 		dispatch(setLoading(true));
 
 		try {
-			const response = await apiConnector('POST', LISCENCE_NO,{token,user}, { Authorization: `Bearer ${token}` });
+			const response = await apiConnector(
+				"POST",
+				LISCENCE_NO,
+				{ token, user },
+				{ Authorization: `Bearer ${token}` }
+			);
 			console.log("LISCENCE_API", response);
 
 			localStorage.setItem("user", JSON.stringify(response?.data?.data));
 			dispatch(setUser(response?.data?.data));
-			toast.success('Liscence generated successfully')
+			toast.success("Liscence generated successfully");
 		} catch (error) {
 			console.log("LISCENCE_API ERROR............", error);
 			toast.error("Could Not generate liscence");
@@ -272,5 +264,16 @@ export function generateLiscenceNo(token,user) {
 
 		dispatch(setLoading(false));
 		toast.dismiss(toastId);
-	}
+	};
 }
+
+export const getQuiz = async () => {
+	try {
+		const res = await apiConnector("GET", GET_QUIZ_DATA);
+		// console.log(res.data.data.QuizData);
+		return res.data.data.QuizData;
+	} catch (error) {
+		console.log("GET_QUIZ_API ERROR............", error);
+		// toast.error("Could Not add pan card");
+	}
+};

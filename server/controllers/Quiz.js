@@ -5,6 +5,8 @@ const User = require('../models/User');
 
 exports.sendQuiz = async (req, res) => {
   try {
+
+    // console.log("QUIZ JSON from server", QuizData);
     return res.status(200).json({
       success: true,
       data:QuizData
